@@ -14,7 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    getEmail();                                                                                                                                                               
+    getEmail();
   }
 
   getEmail() async {
@@ -26,17 +26,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text(_userEmail)
-          // child: Column(children: [
-          //   const SizedBox(height: 20),
-          //   ClipRRect(
-          //     borderRadius: BorderRadius.circular(50),
-          //     child: Image.asset(image, width: 100),
-          //   ),
-          //   const SizedBox(height: 10),
-          //   Text(email),
-          // ]),
+      body: Center(
+        child: Column(children: [
+          const SizedBox(height: 20),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.asset("assets/profile.jpg", width: 100),
           ),
+          const SizedBox(height: 10),
+          Text(_userEmail),
+        ]),
+      ),
     );
   }
 }

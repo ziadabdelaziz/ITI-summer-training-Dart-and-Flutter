@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/views/screens/profile_screen.dart';
 import 'package:todo_app/views/screens/settings_screen.dart';
-import './home_screen.dart';
+import 'todos_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   final String email;
@@ -19,7 +19,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   final List<Map<String, Object>> screens = [
-    {"body": const HomeScreen(), "title": "Home"},
+    {"body": HomeScreen(), "title": "Todos"},
     {"body": const ProfileScreen(), "title": "Profile"},
     {"body": const SettingsScreen(), "title": "Settings"}
   ];
@@ -31,19 +31,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(screens[_selectedIndex]["title"] as String),
-        actions: [
-          Text(widget.email),
-          const SizedBox(width: 5),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(widget.image, width: 30),
-          ),
-          const SizedBox(width: 15),
-        ],
+        actions: _selectedIndex != 1
+            ? [
+                Text(widget.email),
+                const SizedBox(width: 5),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(widget.image, width: 30),
+                ),
+                const SizedBox(width: 15),
+              ]
+            : [],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.task_alt_sharp), label: "Todos"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: "Settings"),
