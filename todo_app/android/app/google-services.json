@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "639255741833",
+    "project_id": "iti-summer-training",
+    "storage_bucket": "iti-summer-training.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639255741833:android:a95de0aad43f9011fdcd58",
+        "android_client_info": {
+          "package_name": "com.example.lab4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639255741833-uo2t2tnhjn6jhu5d2sqkdn9dunegsmjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCiBbdW0Ygk9SIME2YYM1COgMWbDoyW7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639255741833-uo2t2tnhjn6jhu5d2sqkdn9dunegsmjc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "639255741833-3ofsuujeg3i3f7hr4po093ibtakklo96.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lab4.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
