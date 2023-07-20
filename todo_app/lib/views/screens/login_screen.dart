@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/views/screens/navigation_screen.dart';
 import 'package:todo_app/views/widgets/third_party_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo_app/utils/login_verification.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,50 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void saveEmail(String email) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('email', email);
-  }
-
-  signinUsingFirebase({
-    required String email,
-    required String password,
-    required BuildContext context,
-  }) async {
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      User? user = userCredential.user;
-      if (user != null) {
-        saveEmail(email);
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NavigationScreen(
-              email: email,
-              image: 'assets/profile.jpg',
-            ),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("SignIn Failed"),
-        ));
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Wrong Email or Password"),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -91,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 40),
               Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -132,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 60),
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           signinUsingFirebase(
                             email: emailController.text,
                             password: passwordController.text,
