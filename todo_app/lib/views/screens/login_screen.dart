@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/views/screens/navigation_screen.dart';
 import 'package:todo_app/views/widgets/third_party_button.dart';
@@ -16,10 +17,47 @@ class _LoginScreenState extends State<LoginScreen> {
     prefs.setString('email', email);
   }
 
+  signinUsingFirebase({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = userCredential.user;
+      if (user != null) {
+        saveEmail(email);
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NavigationScreen(
+              email: email,
+              image: 'assets/profile.jpg',
+            ),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("SignIn Failed"),
+        ));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Wrong Email or Password"),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -75,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         }),
                     const SizedBox(height: 30),
                     TextFormField(
+                        controller: passwordController,
                         decoration: const InputDecoration(
                           label: Text("Password"),
                           border: OutlineInputBorder(),
@@ -84,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         validator: (value) {
-                          if (value!.length < 10) {
+                          if (value!.length < 6) {
                             return "Your Password Length Must Be More Than 9";
                           } else {
                             return null;
@@ -94,15 +133,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          saveEmail(emailController.text);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NavigationScreen(
-                                email: emailController.text,
-                                image: 'assets/profile.jpg',
-                              ),
-                            ),
+                          signinUsingFirebase(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            context: context,
                           );
                         }
                       },

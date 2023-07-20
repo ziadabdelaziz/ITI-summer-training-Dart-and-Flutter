@@ -19,7 +19,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   final List<Map<String, Object>> screens = [
-    {"body": TodosScreen(), "title": "Todos"},
+    {"body": const TodosScreen(), "title": "Todos"},
     {"body": const ProfileScreen(), "title": "Profile"},
     {"body": const SettingsScreen(), "title": "Settings"}
   ];
