@@ -8,13 +8,13 @@ This application let you sign in with your account and view your todos
 
 
 ### Login Screen
-![Login Screen of the Todo App](assets/login_screen.png)
+![Login Screen of the Todo App](assets/login_screen.jpg)
 
 
 ### Todos Screen
-![Todos Screen of the Todo App](assets/todos_screen.png)
+![Todos Screen of the Todo App](assets/todos_screen.jpg)
 
 ### Profile Screen
-![Profile Screen of the Todo App](assets/profile_screen.png)
+![Profile Screen of the Todo App](assets/profile_screen.jpg)
 
 ### Settings Screen
