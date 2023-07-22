@@ -10,7 +10,7 @@ String TodoModelToJson(List<TodoModel> data) => json.encode(List<dynamic>.from(d
 
 class TodoModel {
     final int userId;
-    final int id;
+    final String id;
     final String title;
     final bool completed;
 
@@ -23,7 +23,7 @@ class TodoModel {
 
     TodoModel copyWith({
         int? userId,
-        int? id,
+        String? id,
         String? title,
         bool? completed,
     }) => 

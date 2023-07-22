@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/views/widgets/third_party_button.dart';
-import 'package:todo_app/utils/login_verification.dart';
+import 'package:todo_app/utils/login_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

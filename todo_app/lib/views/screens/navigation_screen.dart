@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/views/screens/profile_screen.dart';
 import 'package:todo_app/views/screens/settings_screen.dart';
-import 'todos_screen.dart';
+import 'firestore_todos_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   final String email;
